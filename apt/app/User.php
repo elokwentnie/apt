@@ -45,4 +45,20 @@ class User extends Authenticatable
 //        return $this->hasMany('\App\ListaLekow');
 //    }
 //
+
+public function apteczkas()
+{
+    return $this->hasMany('App\Apteczka'); 
+}
+
+public function leks() 
+{
+    return $this->hasMany('App\Lek'); 
+}
+
+public function obrots()
+{
+    return $this->hasMany('App\Obrotlekow'); 
+}
+
 }

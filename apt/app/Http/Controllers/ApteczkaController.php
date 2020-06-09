@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\ListaLekow;
 use Illuminate\Http\Request;
+use App\apteczka\repositories\FrontendRepository;
+use App\Lek;
 
-class Apteczka extends Controller
+class ApteczkaController extends Controller
 {
+    //tworze instance repozytorium
+    public function __construct(FrontendRepository $repository) {
+        $this->fR = $repository;
+    }
     public function index(){
         return view('apteczka.index');
     }
@@ -23,9 +28,11 @@ class Apteczka extends Controller
         return view('apteczka.panelutylizacji');
     }
 
-    public function listalekow(){
-        $apteczki=ListaLekow::paginate(50);
-        return view('apteczka.listalekow', compact('apteczki'));
+    public function listalekow($id){
+      // $apteczki=ListaLekow::paginate(50);
+      $lek = $this->fR->pokazLekiwApteczce($id);
+      dd($lek);
+        return view('apteczka.listalekow');
     }
 
     public function twojaapteczka(){
@@ -43,5 +50,4 @@ class Apteczka extends Controller
     public function dodajlek(){
         return view('apteczka.dodajlek');
     }
-
 }

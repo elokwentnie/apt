@@ -17,23 +17,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('apteczka/','Apteczka@index')->name('apteczka');
-Route::post('apteczka/stworzapteczke', 'Apteczka@stworzapteczke')->name('stworzapteczke');
-Route::post('apteczka/wybierzapteczke', 'Apteczka@wybierzapteczke')->name('wybierzapteczke');
-Route::match('apteczka/panelutylizacji', 'Apteczka@panelutylizacji')->name('panelutylizacji');
-Route::match('apteczka/listalekow', 'Apteczka@listalekow')->name('listalekow');
-Route::post('apteczka/dodajlek', 'Apteczka@dodajlek')->name('dodajlek');
-Route::match('apteczka/twojaapteczka', 'Apteczka@twojaapteczka')->name('twojaapteczka');
-Route::post('apteczka/utylizujlek', 'Apteczka@utylizujlek')->name('utylizujlek');
-Route::post('apteczka/zazyjlek', 'Apteczka@zazyjlek')->name('zazyjlek');
+Route::post('apteczka/','ApteczkaController@index')->name('apteczka');
+Route::post('stworzapteczke', 'ApteczkaController@stworzapteczke')->name('stworzapteczke');
+Route::post(('wybierzapteczke'), 'ApteczkaController@wybierzapteczke')->name('wybierzapteczke');
+Route::match('apteczka/panelutylizacji', 'ApteczkaController@panelutylizacji')->name('panelutylizacji');
+Route::get(('listalekow').'/{id}', 'ApteczkaController@listalekow')->name('listalekow');
+Route::post('apteczka/dodajlek', 'ApteczkaController@dodajlek')->name('dodajlek');
+Route::match('apteczka/twojaapteczka', 'ApteczkaController@twojaapteczka')->name('twojaapteczka');
+Route::post('apteczka/utylizujlek', 'ApteczkaController@utylizujlek')->name('utylizujlek');
+Route::post('apteczka/zazyjlek', 'ApteczkaController@zazyjlek')->name('zazyjlek');
 
 
-
-
-
+Route::get('/home', 'HomeController@index');
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 

@@ -14,7 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(\App\apteczka\interfaces\FRepoInterface::class, function()
+        {
+            return new \App\apteczka\repositories\FrontendRepository;
+        });
     }
 
     /**
